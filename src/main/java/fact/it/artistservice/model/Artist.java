@@ -9,8 +9,7 @@ public class Artist {
     private String id;
     private String name;
 
-    public Artist(String id, String name) {
-        this.id = id;
+    public Artist(String name) {
         this.name = name;
     }
 
