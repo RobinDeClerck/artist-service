@@ -3,7 +3,6 @@ package fact.it.artistservice.controller;
 import fact.it.artistservice.model.Artist;
 import fact.it.artistservice.repository.ArtistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,6 +16,11 @@ public class ArtistRestController {
     @GetMapping("/artists")
     public List<Artist> getArtists() {
         return this.artistRepository.findAll();
+    }
+
+    @GetMapping("/artists/{name}")
+    public Artist getArtistByName(@PathVariable String name) {
+        return this.artistRepository.findArtistByName(name);
     }
 
     @PostMapping("/artist")
