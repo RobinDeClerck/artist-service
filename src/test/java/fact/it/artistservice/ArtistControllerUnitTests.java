@@ -37,7 +37,7 @@ public class ArtistControllerUnitTests {
 
         given(artistRepository.findArtistByName("The Police")).willReturn(artist1);
 
-        mockMvc.perform(get("/api/artists/{name}","The Police"))
+        mockMvc.perform(get("/artists/{name}","The Police"))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.name", is("The Police")));
@@ -56,7 +56,7 @@ public class ArtistControllerUnitTests {
 
         given(artistRepository.findAll()).willReturn(artistList);
 
-        mockMvc.perform(get("/api/artists"))
+        mockMvc.perform(get("/artists"))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(3)))

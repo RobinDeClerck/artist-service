@@ -9,7 +9,6 @@ import javax.annotation.PostConstruct;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
 public class ArtistRestController {
     @Autowired
     private ArtistRepository artistRepository;
