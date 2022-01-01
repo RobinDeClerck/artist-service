@@ -13,6 +13,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
@@ -33,7 +34,7 @@ public class ArtistControllerUnitTests {
 
     @Test
     public void givenArtist_whenGetArtistByName_thenReturnJsonReview() throws Exception {
-        Artist artist1 = new Artist("The Police");
+        Artist artist1 = new Artist(UUID.randomUUID(),"The Police");
 
         given(artistRepository.findArtistByName("The Police")).willReturn(artist1);
 
@@ -45,9 +46,9 @@ public class ArtistControllerUnitTests {
 
     @Test
     public void whenGetArtists_thenReturnJsonArtists() throws Exception {
-        Artist artist1 = new Artist("The Police");
-        Artist artist2 = new Artist("Royal Blood");
-        Artist artist3 = new Artist("Radiohead");
+        Artist artist1 = new Artist(UUID.randomUUID(),"The Police");
+        Artist artist2 = new Artist(UUID.randomUUID(),"Royal Blood");
+        Artist artist3 = new Artist(UUID.randomUUID(),"Radiohead");
 
         List<Artist> artistList = new ArrayList<>();
         artistList.add(artist1);

@@ -11,6 +11,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
@@ -27,9 +28,9 @@ public class ArtistControllerIntegrationTests {
     @Autowired
     private ArtistRepository artistRepository;
 
-    private Artist artist1 = new Artist("The Police");
-    private Artist artist2 = new Artist("Royal Blood");
-    private Artist artist3 = new Artist("Radiohead");
+    private Artist artist1 = new Artist(UUID.randomUUID(),"The Police");
+    private Artist artist2 = new Artist(UUID.randomUUID(),"Royal Blood");
+    private Artist artist3 = new Artist(UUID.randomUUID(),"Radiohead");
 //    private Artist artistToBeDeleted = new Artist("Muse");
 
     @BeforeEach

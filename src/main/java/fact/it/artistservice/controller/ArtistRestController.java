@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 public class ArtistRestController {
@@ -16,12 +17,12 @@ public class ArtistRestController {
     @PostConstruct
     public void fillDB() {
         if(artistRepository.count()==0) {
-            artistRepository.save(new Artist("The Police"));
-            artistRepository.save(new Artist("Royal Blood"));
-            artistRepository.save(new Artist("Muse"));
-            artistRepository.save(new Artist("Red Hot Chili Peppers"));
-            artistRepository.save(new Artist("R.E.M."));
-            artistRepository.save(new Artist("Radiohead"));
+            artistRepository.save(new Artist(UUID.randomUUID(), "The Police"));
+            artistRepository.save(new Artist(UUID.randomUUID(),"Royal Blood"));
+            artistRepository.save(new Artist(UUID.randomUUID(),"Muse"));
+            artistRepository.save(new Artist(UUID.randomUUID(),"Red Hot Chili Peppers"));
+            artistRepository.save(new Artist(UUID.randomUUID(),"R.E.M."));
+            artistRepository.save(new Artist(UUID.randomUUID(),"Radiohead"));
         }
     }
 
