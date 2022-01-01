@@ -38,6 +38,9 @@ spec:
             - containerPort: 27017
               name: mongo
 ---
+
+
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
