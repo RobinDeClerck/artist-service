@@ -66,7 +66,7 @@ public class ArtistControllerIntegrationTests {
         mockMvc.perform(get("/artists"))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(4)))
+                .andExpect(jsonPath("$", hasSize(3)))
                 .andExpect(jsonPath("$[0].name", is("The Police")))
                 .andExpect(jsonPath("$[1].name", is("Royal Blood")))
                 .andExpect(jsonPath("$[2].name", is("Radiohead")));
