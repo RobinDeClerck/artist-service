@@ -57,10 +57,10 @@ public class ArtistControllerIntegrationTests {
     @Test
     public void givenArtist_whenGetArtists_thenReturnJsonReviews() throws Exception {
 
-//        List<Artist> artistList = new ArrayList<>();
-//        artistList.add(artist1);
-//        artistList.add(artist2);
-//        artistList.add(artist3);
+        List<Artist> artistList = new ArrayList<>();
+        artistList.add(artist1);
+        artistList.add(artist2);
+        artistList.add(artist3);
 //        artistList.add(artistToBeDeleted);
 
         mockMvc.perform(get("/api/artists"))
