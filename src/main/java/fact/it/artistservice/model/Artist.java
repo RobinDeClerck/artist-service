@@ -10,9 +10,9 @@ public class Artist {
     @Id
     private String id;
     private String name;
-    private UUID uuid;
+    private String uuid;
 
-    public Artist(UUID uuid, String name) {
+    public Artist(String  uuid, String name) {
         this.uuid = uuid;
         this.name = name;
     }
@@ -23,11 +23,11 @@ public class Artist {
 
     public void setId(String id) {this.id = id;}
 
-    public UUID getUuid() {
+    public String getUuid() {
         return uuid;
     }
 
-    public void setUuid(UUID uuid) {
+    public void setUuid(String uuid) {
         this.uuid = uuid;
     }
 

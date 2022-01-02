@@ -28,10 +28,9 @@ public class ArtistControllerIntegrationTests {
     @Autowired
     private ArtistRepository artistRepository;
 
-    private Artist artist1 = new Artist(UUID.randomUUID(),"The Police");
-    private Artist artist2 = new Artist(UUID.randomUUID(),"Royal Blood");
-    private Artist artist3 = new Artist(UUID.randomUUID(),"Radiohead");
-//    private Artist artistToBeDeleted = new Artist("Muse");
+    private Artist artist1 = new Artist("9e0e2b01-41db-4008-bd8b-988977d6019a","The Police");
+    private Artist artist2 = new Artist("aa62b28e-b6d4-4086-91d4-e5fac1ed56f3","Royal Blood");
+    private Artist artist3 = new Artist("a74b1b7f-71a5-4011-9441-d0b5e4122711","Radiohead");
 
     @BeforeEach
     public void beforeAllTests() {
@@ -39,7 +38,6 @@ public class ArtistControllerIntegrationTests {
         artistRepository.save(artist1);
         artistRepository.save(artist2);
         artistRepository.save(artist3);
-//        artistRepository.save(artistToBeDeleted);
     }
 
     @AfterEach
@@ -47,31 +45,41 @@ public class ArtistControllerIntegrationTests {
         artistRepository.deleteAll();
     }
 
+//    @Test
+//    public void givenArtist_whenGetArtistByArtistName_thenReturnJsonArtist() throws Exception {
+//        mockMvc.perform(get("/artists/{name}","The Police"))
+//                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+//                .andExpect(status().isOk())
+//                .andExpect(jsonPath("$.name", is("The Police")));
+//    }
+
     @Test
-    public void givenArtist_whenGetArtistByArtistName_thenReturnJsonReview() throws Exception {
-        mockMvc.perform(get("/artists/{name}","The Police"))
+    public void givenArtist_whenGetArtistByArtistUuid_thenReturnJsonArtist() throws Exception {
+        mockMvc.perform(get("/artists/{uuid}","9e0e2b01-41db-4008-bd8b-988977d6019a"))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.name", is("The Police")));
+                .andExpect(jsonPath("$.name", is("The Police")))
+                .andExpect(jsonPath("$.uuid", is("9e0e2b01-41db-4008-bd8b-988977d6019a")));
     }
 
     @Test
-    public void givenArtist_whenGetArtists_thenReturnJsonReviews() throws Exception {
+    public void givenArtist_whenGetArtists_thenReturnJsonArtists() throws Exception {
 
         List<Artist> artistList = new ArrayList<>();
         artistList.add(artist1);
         artistList.add(artist2);
         artistList.add(artist3);
-//        artistList.add(artistToBeDeleted);
 
         mockMvc.perform(get("/artists"))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(3)))
                 .andExpect(jsonPath("$[0].name", is("The Police")))
+                .andExpect(jsonPath("$[0].uuid", is("9e0e2b01-41db-4008-bd8b-988977d6019a")))
                 .andExpect(jsonPath("$[1].name", is("Royal Blood")))
-                .andExpect(jsonPath("$[2].name", is("Radiohead")));
-//                .andExpect(jsonPath("$[3].name", is("Muse")));
+                .andExpect(jsonPath("$[1].uuid", is("aa62b28e-b6d4-4086-91d4-e5fac1ed56f3")))
+                .andExpect(jsonPath("$[2].name", is("Radiohead")))
+                .andExpect(jsonPath("$[2].uuid", is("a74b1b7f-71a5-4011-9441-d0b5e4122711")));
     }
 
 }

@@ -32,23 +32,37 @@ public class ArtistControllerUnitTests {
 
     private ObjectMapper mapper = new ObjectMapper();
 
+//    @Test
+//    public void givenArtist_whenGetArtistByName_thenReturnJsonArtist() throws Exception {
+//        Artist artist1 = new Artist("9e0e2b01-41db-4008-bd8b-988977d6019a","The Police");
+//
+//        given(artistRepository.findArtistByName("The Police")).willReturn(artist1);
+//
+//        mockMvc.perform(get("/artists/{name}","The Police"))
+//                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+//                .andExpect(status().isOk())
+//                .andExpect(jsonPath("$.name", is("The Police")));
+//    }
+
     @Test
-    public void givenArtist_whenGetArtistByName_thenReturnJsonReview() throws Exception {
-        Artist artist1 = new Artist(UUID.randomUUID(),"The Police");
+    public void givenArtist_whenGetArtistByUuid_thenReturnJsonArtist() throws Exception {
+        Artist artist1 = new Artist("9e0e2b01-41db-4008-bd8b-988977d6019a","The Police");
 
-        given(artistRepository.findArtistByName("The Police")).willReturn(artist1);
+        given(artistRepository.findArtistByUuid("9e0e2b01-41db-4008-bd8b-988977d6019a")).willReturn(artist1);
 
-        mockMvc.perform(get("/artists/{name}","The Police"))
+        mockMvc.perform(get("/artists/{uuid}","9e0e2b01-41db-4008-bd8b-988977d6019a"))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.name", is("The Police")));
+                .andExpect(jsonPath("$.name", is("The Police")))
+                .andExpect(jsonPath("$.uuid", is("9e0e2b01-41db-4008-bd8b-988977d6019a")));
     }
+
 
     @Test
     public void whenGetArtists_thenReturnJsonArtists() throws Exception {
-        Artist artist1 = new Artist(UUID.randomUUID(),"The Police");
-        Artist artist2 = new Artist(UUID.randomUUID(),"Royal Blood");
-        Artist artist3 = new Artist(UUID.randomUUID(),"Radiohead");
+        Artist artist1 = new Artist("9e0e2b01-41db-4008-bd8b-988977d6019a","The Police");
+        Artist artist2 = new Artist("aa62b28e-b6d4-4086-91d4-e5fac1ed56f3","Royal Blood");
+        Artist artist3 = new Artist("a74b1b7f-71a5-4011-9441-d0b5e4122711","Radiohead");
 
         List<Artist> artistList = new ArrayList<>();
         artistList.add(artist1);
