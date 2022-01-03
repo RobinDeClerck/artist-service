@@ -10,7 +10,7 @@ public class Artist {
     @Id
     private String id;
     private String name;
-    private String uuid;
+    private String MBID;
 
     private String type;
     private String originCountry;
@@ -21,9 +21,9 @@ public class Artist {
     private String bannerImage;
 
 
-    public Artist(String uuid, String name, String type, String originCountry, List<String> members, String bannerImage) {
+    public Artist(String MBID, String name, String type, String originCountry, List<String> members, String bannerImage) {
         this.name = name;
-        this.uuid = uuid;
+        this.MBID = MBID;
         this.type = type;
         this.bannerImage = bannerImage;
         this.originCountry = originCountry;
@@ -36,12 +36,12 @@ public class Artist {
 
     public void setId(String id) {this.id = id;}
 
-    public String getUuid() {
-        return uuid;
+    public String getMBID() {
+        return MBID;
     }
 
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
+    public void setMBID(String MBID) {
+        this.MBID = MBID;
     }
 
     public String getName() {

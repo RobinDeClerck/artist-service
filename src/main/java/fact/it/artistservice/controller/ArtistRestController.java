@@ -36,8 +36,8 @@ public class ArtistRestController {
 //        return this.artistRepository.findArtistByName(name);
 //    }
 
-    @GetMapping("/artists/{uuid}")
-    public Artist getArtistByUuid(@PathVariable String uuid) {
-        return this.artistRepository.findArtistByUuid(uuid);
+    @GetMapping("/artists/{MBID}")
+    public Artist getArtistByUuid(@PathVariable String MBID) {
+        return this.artistRepository.findArtistByMBID(MBID);
     }
 }

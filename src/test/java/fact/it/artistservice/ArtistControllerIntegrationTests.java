@@ -12,7 +12,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.UUID;
 
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.startsWith;
@@ -56,12 +55,12 @@ public class ArtistControllerIntegrationTests {
 //    }
 
     @Test
-    public void givenArtist_whenGetArtistByArtistUuid_thenReturnJsonArtist() throws Exception {
-        mockMvc.perform(get("/artists/{uuid}","9e0e2b01-41db-4008-bd8b-988977d6019a"))
+    public void givenArtist_whenGetArtistByArtistMBID_thenReturnJsonArtist() throws Exception {
+        mockMvc.perform(get("/artists/{mbid}","9e0e2b01-41db-4008-bd8b-988977d6019a"))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.name", is("The Police")))
-                .andExpect(jsonPath("$.uuid", is("9e0e2b01-41db-4008-bd8b-988977d6019a")))
+                .andExpect(jsonPath("$.mbid", is("9e0e2b01-41db-4008-bd8b-988977d6019a")))
                 .andExpect(jsonPath("$.type", is("Rock band")))
                 .andExpect(jsonPath("$.originCountry", is("United Kingdom")))
                 .andExpect(jsonPath("$.members", is(Arrays.asList("Sting", "Stewart Copeland", "Andy Summers", "Henry Padovani"))))
@@ -81,21 +80,21 @@ public class ArtistControllerIntegrationTests {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(3)))
                 .andExpect(jsonPath("$[0].name", is("The Police")))
-                .andExpect(jsonPath("$[0].uuid", is("9e0e2b01-41db-4008-bd8b-988977d6019a")))
+                .andExpect(jsonPath("$[0].mbid", is("9e0e2b01-41db-4008-bd8b-988977d6019a")))
                 .andExpect(jsonPath("$[0].type", is("Rock band")))
                 .andExpect(jsonPath("$[0].originCountry", is("United Kingdom")))
                 .andExpect(jsonPath("$[0].members", is(Arrays.asList("Sting", "Stewart Copeland", "Andy Summers", "Henry Padovani"))))
                 .andExpect(jsonPath("$[0].bannerImage", startsWith("https://i.scdn.co/image/")))
 
                 .andExpect(jsonPath("$[1].name", is("Royal Blood")))
-                .andExpect(jsonPath("$[1].uuid", is("aa62b28e-b6d4-4086-91d4-e5fac1ed56f3")))
+                .andExpect(jsonPath("$[1].mbid", is("aa62b28e-b6d4-4086-91d4-e5fac1ed56f3")))
                 .andExpect(jsonPath("$[1].type", is("Rock duo")))
                 .andExpect(jsonPath("$[1].originCountry", is("United Kingdom")))
                 .andExpect(jsonPath("$[1].members", is(Arrays.asList("Mike Kerr", "Ben Thatcher"))))
                 .andExpect(jsonPath("$[1].bannerImage", startsWith("https://i.scdn.co/image/")))
 
                 .andExpect(jsonPath("$[2].name", is("Radiohead")))
-                .andExpect(jsonPath("$[2].uuid", is("a74b1b7f-71a5-4011-9441-d0b5e4122711")))
+                .andExpect(jsonPath("$[2].mbid", is("a74b1b7f-71a5-4011-9441-d0b5e4122711")))
                 .andExpect(jsonPath("$[2].type", is("Rock band")))
                 .andExpect(jsonPath("$[2].originCountry", is("United Kingdom")))
                 .andExpect(jsonPath("$[2].members", is(Arrays.asList("Thom Yorke", "Jonny Greenwood", "Ed O'Brien", "Colin Greenwood", "Philip Selway"))))

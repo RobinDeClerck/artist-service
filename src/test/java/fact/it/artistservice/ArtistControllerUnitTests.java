@@ -47,16 +47,16 @@ public class ArtistControllerUnitTests {
 //    }
 
     @Test
-    public void givenArtist_whenGetArtistByUuid_thenReturnJsonArtist() throws Exception {
+    public void givenArtist_whenGetArtistByMBID_thenReturnJsonArtist() throws Exception {
         Artist artist1 = new Artist("9e0e2b01-41db-4008-bd8b-988977d6019a", "The Police", "Rock band", "United Kingdom", Arrays.asList("Sting", "Stewart Copeland", "Andy Summers", "Henry Padovani"), "https://i.scdn.co/image/ab67618600001016af496a5f2377f1149d2a5cf3");
 
-        given(artistRepository.findArtistByUuid("9e0e2b01-41db-4008-bd8b-988977d6019a")).willReturn(artist1);
+        given(artistRepository.findArtistByMBID("9e0e2b01-41db-4008-bd8b-988977d6019a")).willReturn(artist1);
 
-        mockMvc.perform(get("/artists/{uuid}","9e0e2b01-41db-4008-bd8b-988977d6019a"))
+        mockMvc.perform(get("/artists/{MBID}","9e0e2b01-41db-4008-bd8b-988977d6019a"))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.name", is("The Police")))
-                .andExpect(jsonPath("$.uuid", is("9e0e2b01-41db-4008-bd8b-988977d6019a")));
+                .andExpect(jsonPath("$.mbid", is("9e0e2b01-41db-4008-bd8b-988977d6019a")));
     }
 
 
@@ -78,21 +78,21 @@ public class ArtistControllerUnitTests {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(3)))
                 .andExpect(jsonPath("$[0].name", is("The Police")))
-                .andExpect(jsonPath("$[0].uuid", is("9e0e2b01-41db-4008-bd8b-988977d6019a")))
+                .andExpect(jsonPath("$[0].mbid", is("9e0e2b01-41db-4008-bd8b-988977d6019a")))
                 .andExpect(jsonPath("$[0].type", is("Rock band")))
                 .andExpect(jsonPath("$[0].originCountry", is("United Kingdom")))
                 .andExpect(jsonPath("$[0].members", is(Arrays.asList("Sting", "Stewart Copeland", "Andy Summers", "Henry Padovani"))))
                 .andExpect(jsonPath("$[0].bannerImage", startsWith("https://i.scdn.co/image/")))
 
                 .andExpect(jsonPath("$[1].name", is("Royal Blood")))
-                .andExpect(jsonPath("$[1].uuid", is("aa62b28e-b6d4-4086-91d4-e5fac1ed56f3")))
+                .andExpect(jsonPath("$[1].mbid", is("aa62b28e-b6d4-4086-91d4-e5fac1ed56f3")))
                 .andExpect(jsonPath("$[1].type", is("Rock duo")))
                 .andExpect(jsonPath("$[1].originCountry", is("United Kingdom")))
                 .andExpect(jsonPath("$[1].members", is(Arrays.asList("Mike Kerr", "Ben Thatcher"))))
                 .andExpect(jsonPath("$[1].bannerImage", startsWith("https://i.scdn.co/image/")))
 
                 .andExpect(jsonPath("$[2].name", is("Radiohead")))
-                .andExpect(jsonPath("$[2].uuid", is("a74b1b7f-71a5-4011-9441-d0b5e4122711")))
+                .andExpect(jsonPath("$[2].mbid", is("a74b1b7f-71a5-4011-9441-d0b5e4122711")))
                 .andExpect(jsonPath("$[2].type", is("Rock band")))
                 .andExpect(jsonPath("$[2].originCountry", is("United Kingdom")))
                 .andExpect(jsonPath("$[2].members", is(Arrays.asList("Thom Yorke", "Jonny Greenwood", "Ed O'Brien", "Colin Greenwood", "Philip Selway"))))
